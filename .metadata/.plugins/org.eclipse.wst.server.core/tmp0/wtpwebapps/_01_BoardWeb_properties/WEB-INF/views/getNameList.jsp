@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <!--jstl를 사용하겠다는 선언, uri로 식별 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +12,9 @@
 </head>
 <body>
 	<div id="divNameList">
-		<a>name1</a>
-		<a>name2</a>
-		<a>name3</a>
+		<c:forEach var="name" items="${nameList }">
+			<p>${name.firstName } ${name.lastName }</p>
+		</c:forEach>
 	</div>
 </body>
 </html>
