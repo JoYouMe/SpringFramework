@@ -1,0 +1,6 @@
+package com.spring.boardweb.service.impl;
+
+@Service
+public class HomeServiceimplTwo implement HomeService {
+
+}

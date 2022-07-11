@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\BitCamp\springFramework\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\841323152.index
+\FirstSpringFramework\src\main\java
+C:\BitCamp\springFramework\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3254442011.index
+\_01_BoardWeb_properties\src\main\java
