@@ -25,3 +25,15 @@
     - ORM 프레임워크: ORM(Object Relation Mapping) 객체와 DB 테이블을 매핑하여 사용하는 프레임 워크
                      DB 연결, 쿼리문을 클래스에서 분리된 파일에 작성
                 종류: Mybatis, iBatis, Hibernate ....
+4. MVC 패턴
+    - MVC(Model View Controller) 패턴
+      Model: DB와 연동되는 객체(Service, ServiceImpl, DAO, mapper)
+      Controller: View와 Model을 연결하는 객체(Controller)
+      View: 사용자에게 표출될 화면(JSP)
+    - View에서 사용자가 어떤 동작을 취하면 Controller가 사용자 요청을 받아 처리를 진행
+      Controller에서 Model객체의 함수를 호출하여 DB 데이터를 받아오거나 DB 데이터의 조작을 함
+    -        ---요청--->               ---함수 호출--->        ---쿼리--->
+        View               Controller                   Model               DB
+             <---응답---               <---결과 리턴---        <---처리 결과---
+    - Model의 호출 순서
+      Service -> ServiceImpl -> DAO -> Mapper

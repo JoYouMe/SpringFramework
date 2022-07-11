@@ -1,0 +1,15 @@
+package com.spring.boardweb.service.impl;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+//DAO: Data Access Object
+//DB에 직접 접근하는 객체
+@Repository
+public class HomeDAO {
+//DB에 직접 전근해야 하므로 SqlSessionTemplate을 하나 꺼내옴
+	@Autowired
+	SqlSessionTemplate mybatis;
+	
+}

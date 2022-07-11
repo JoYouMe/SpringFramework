@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${hello }</h1> <!--  -->
-	<a href="/">홈으로</a> <!-- 홈으로 다시 돌아가게 설정 -->
+	<h1>${hello }</h1>
+	<a href="/">홈으로</a>
 </body>
 </html>
