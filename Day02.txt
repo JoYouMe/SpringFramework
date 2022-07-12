@@ -22,9 +22,10 @@
     - ORM 프레임워크가 등장하기 전에는 JDBC 프로그래밍을 통해서 DB연동
     - JDBC 프로그래밍은 DB 연결 클래스를 따로 작성해야하고 query문도 자바 클래스로 작성해야해서 매우 불편했음
     - ORM 프레임워크가 등장하면서 DB 연결 설정이나 query문이 클래스에서 분리되어 편하게 사용할 수 있게 됨
-    - ORM 프레임워크: ORM(Object Relation Mapping) 객체와 DB 테이블을 매핑하여 사용하는 프레임 워크
+    - ORM 프레임워크: ORM(Object Relation Mapping) 객체와 SQL DB 테이블을 매핑하여 사용하는 프레임 워크
                      DB 연결, 쿼리문을 클래스에서 분리된 파일에 작성
                 종류: Mybatis, iBatis, Hibernate ....
+                      - Mybatis : 자바의 객체(Object)와 SQL 사이에서 자동 맵핑을 도와주는 프레임워크
 4. MVC 패턴
     - MVC(Model View Controller) 패턴
       Model: DB와 연동되는 객체(Service, ServiceImpl, DAO, mapper)
