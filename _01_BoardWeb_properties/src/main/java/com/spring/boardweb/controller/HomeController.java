@@ -1,13 +1,14 @@
 package com.spring.boardweb.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.boardweb.HomeVO;
 import com.spring.boardweb.service.HomeService;
@@ -119,15 +120,52 @@ public class HomeController {
 	
 	@RequestMapping("getNameList.do")
 	public String getNameList(Model model) {
+		//DB에서 이름 목록을 조회한 결과를 resultList라는 변수에 담아줌
 		List<HomeVO> resultList = homeService.getNameList();
 		
 		model.addAttribute("nameList", resultList);
 		
 		for(int i = 0; i < resultList.size(); i++) {
+			//결과 값 확인
 			System.out.println("firstName========" + resultList.get(i).getFirstName());
 			System.out.println("lastName========" + resultList.get(i).getLastName());
 		}
 		
-		return "getNameList";
+		return "getNameList"; //getNameList.jsp로 이동
 	}
+	
+	@RequestMapping(value="insertName.do", produces="application/text; charset=utf-8")
+	public String insertName(HomeVO homeVO) {
+		//insert, update, delete 실행 시 성공하면 1, 실패하면 0을 리턴
+		homeService.insertName(homeVO);
+		return "redirect:getNameList.do"; //redirect:로 바로 getNameList로 이동
+	}
+	
+	//getName.do를 컨트롤러에 생성 
+	//Command 객체로 파라미터를 선언 시 
+	//HomeVO homeVO = new HomeVO(); 자동으로 생성자 실행
+	//키값과 이름이 동일한 변수의 setter 메소드를 호출하여 해당 변수에 값을 담아줌
+	@RequestMapping(value="getName.do", produces="application/text; charset=utf-8")
+	public String getName(HomeVO homeVO, Model model) {
+		//homeVO.setFirstName("유미");
+		//homeVO.setLastName("조");
+		//name이라는 키 값으로 가져옴 
+		model.addAttribute("name", homeVO);
+		return "getName";
+	}
+	
+	//VO에 없는 설정은 Map으로 생성
+	@RequestMapping(value="updateName.do", produces="application/text; charset=utf-8")
+	public String updateName(@RequestParam Map<String, String> paramMap) {
+		homeService.updateName(paramMap);
+		return "redirect:getNameList.do"; //redirect:로 바로 getNameList로 이동
+	}
+	
+	//deleteName.do를 컨트롤러에 생성 VO, Map 둘 중 아무거나 사용 가능
+	@RequestMapping(value="deleteName.do", produces="application/text; charset=utf-8")
+	public String deleteName(HomeVO homeVO) {
+		homeService.deleteName(homeVO);
+		return "redirect:getNameList.do";
+	}
+	
 }
