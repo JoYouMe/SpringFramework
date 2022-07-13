@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="C:\Users\USER\Desktop\project_togaether\BIT_TOGAETHER\5조(김예지, 조유미, 성문식, 이기쁨, 박준현)\css" rel="stylesheet" type="text/css">
 <style>
 	.form-wrapper {
 		display: flex;
