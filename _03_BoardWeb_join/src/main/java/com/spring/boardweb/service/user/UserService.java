@@ -1,5 +1,7 @@
 package com.spring.boardweb.service.user;
 
-public interface UserService {
+import com.spring.boardweb.UserVO;
 
+public interface UserService {
+	void join(UserVO userVO);
 }

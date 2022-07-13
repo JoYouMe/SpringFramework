@@ -10,5 +10,21 @@
 <!-- DAO에서 쿼리가 분리되었기 때문에 DAO클래스 이름을 따라감 -->
 <mapper namespace="UserDAO">
 	<!-- 쿼리 작성 영역 -->
-	
+	<insert id="join" parameterType="user">
+	<![CDATA[
+		INSERT INTO T_USER (
+			USER_ID,
+			USER_PW,
+			USER_NM,
+			USER_MAIL,
+			USER_TEL
+		) VALUES (
+			#{userId},
+			#{userPw},
+			#{userNm},
+			#{userMail},
+			#{userTel}
+		)
+	]]>
+	</insert>
 </mapper>
