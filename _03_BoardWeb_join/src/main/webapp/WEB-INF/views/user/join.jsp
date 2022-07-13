@@ -56,10 +56,12 @@
 				<label for="userPw">비밀번호</label>
 			</div>
 			<input type="password" id="userPw" name="userPw" required>
+			<p id="pwValidation" style="color: red; font-size: 0.8rem"> 비밀번호는 영문자, 숫자, 특수문자 조합의 9자리 이상으로 설정 부탁</p>
 			<div class="label-wrapper">
 				<label for="userPwCheck">비밀번호 확인</label>
 			</div>
 			<input type="password" id="userPwCheck" name="userPwCheck" required>
+			<p id="pwCheckResult" style="font-size:0.8rem"></p>
 			<div class="label-wrapper">
 				<label for="userNm">이름</label>
 			</div>
@@ -82,6 +84,12 @@
 		$(function() {
 			//id 중복체크가 됐는지 확인하는 변수
 			let checkId = false;
+			let pwValidation = false;
+			let pwCheck = false;
+			
+			//p태그 처음에는 숨김
+			$("#pwValidation").hide();
+			$("#pwCheckResult").hide();
 			
 			//id 중복체크
 			$("#btnIdCheck").on("click", function() {
@@ -123,6 +131,71 @@
 			$("#userId").on("change", function(){
 				checkId = false;
 				$("#btnIdCheck").attr("disabled", false);
+			});
+			
+			//비밀번호 유효성 검사
+			function validatePassword(character){
+				return /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,}$/.test(character)
+			}
+			
+			$("#userPw").on("change", function(){
+				if(!validatePassword($("#userPw").val())){
+					pwValidation = false;
+					$("#pwValidation").show();
+					$("#userPw").focus();
+				}else{
+					pwValidation = true;
+					$("#pwValidation").hide();
+				}
+				//비밀번호 값이 바뀌었을 때 
+				if($("#userPw").val()== $("#userPwCheck").val()){
+					pwCheck = true;
+					$("#pwCheckResult").css("color", "green");
+					$("#pwCheckResult").text("비밀번호 일치");
+				} else{
+					pwCheck = false;
+					$("#pwCheckResult").css("color", "red");
+					$("#pwCheckResult").text("비밀번호 불일치");
+				} 
+			});
+			
+			//비밀번호 확인
+			$("#userPwCheck").on("change", function(){ //userPwCheck가 바뀔때마다
+				$("#pwCheckResult").show();
+				if($("#userPw").val()== $("#userPwCheck").val()){
+					pwCheck = true;
+					$("#pwCheckResult").css("color", "green");
+					$("#pwCheckResult").text("비밀번호 일치");
+				} else{
+					pwCheck = false;
+					$("#pwCheckResult").css("color", "red");
+					$("#pwCheckResult").text("비밀번호 불일치");
+				}
+			});
+			
+			//회원가입할 (회원가입 폼 서브밋될)때 마지막 유효성 검사
+			//아래의 경우 서브밋이 안되도록
+			$("#joinForm").on("submit", function(e){
+				if(!checkId){
+					alert("ID 중복 체크 부탁");
+					$("#userId").focus();
+					e.preventDefault();
+					return;
+				}
+				
+				if(!pwValidation){
+					alert("비밀번호는 영문자, 숫자, 특수문자 조합의 9자리 이상으로 설정 부탁");
+					$("#userPw").focus();
+					e.preventDefault();
+					return;
+				}
+				
+				if(!pwCheck){
+					alert("비밀번호 불일치");
+					$("#userPwCheck").focus();
+					e.preventDefault();
+					return;
+				}	
 			});
 		});
 	</script>
