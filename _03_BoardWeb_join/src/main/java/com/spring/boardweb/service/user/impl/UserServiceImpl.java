@@ -15,4 +15,10 @@ public class UserServiceImpl implements UserService{
 	public void join(UserVO userVO) {
 		userDAO.join(userVO);
 	}
+	
+	@Override
+	public int idCheck(String userId) {
+		return userDAO.idCheck(userId);
+	}
+	
 }

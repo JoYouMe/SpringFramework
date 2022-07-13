@@ -1,10 +1,14 @@
 package com.spring.boardweb.controller.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.boardweb.UserVO;
 import com.spring.boardweb.service.user.UserService;
 
@@ -35,5 +39,22 @@ public class UserController {
 	@RequestMapping("/login.do")
 	public String login() {
 		return "user/login";
+	}
+	
+	@RequestMapping("/idCheck.do")
+	//ViewResolver를 타게 되면 ResponseBody를 HTML 구조로 만들어서 화면을 리턴
+	//만약 ViewResolver를 안타고 반환 값 자체를 ResponseBody로 만드려면 @ResponseBody 사용
+	@ResponseBody
+	public String idCheck(UserVO userVO) {
+		//Json 객체로 변환해주는 클래스: ObjectMapper
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		//id가 같은 문자를 count해야되기 때문에 int
+		int resultIdCheck = userService.idCheck(userVO.getUserId());
+		
+		String json = "";
+		return json;
+		
 	}
 }

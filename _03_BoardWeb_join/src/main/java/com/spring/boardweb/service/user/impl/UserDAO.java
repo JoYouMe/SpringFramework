@@ -14,5 +14,9 @@ public class UserDAO {
 	public void join(UserVO userVO) {
 		mybatis.insert("UserDAO.join", userVO);
 	}
+	
+	public int idCheck(String userId) {
+		return mybatis.selectOne("UserDAO.idCheck", userId);
+	}
 
 }
