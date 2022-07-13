@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 	.form-wrapper {
 		display: flex;
@@ -77,5 +78,53 @@
 		</form>
 	</div>
 	<jsp:include page="${pageContext.request.contextPath }/footer.jsp"></jsp:include>
+	<script>
+		$(function() {
+			//id 중복체크가 됐는지 확인하는 변수
+			let checkId = false;
+			
+			//id 중복체크
+			$("#btnIdCheck").on("click", function() {
+				if($("#userId").val() == null || $("#userId").val() == '') {
+					alert("아이디를 입력하세요.");
+					return;
+				}
+				
+				$.ajax({
+					url: '/user/idCheck.do',
+					type: 'post',
+					data: $("#joinForm").serialize(),
+					success: function(obj) {
+						console.log(obj);
+						
+						const data = JSON.parse(obj);
+						
+						console.log(data);
+						console.log(data.resultIdCheck);
+						
+						if(data.resultIdCheck < 1) {
+							if(confirm("사용가능한 아이디입니다. " + $("#userId").val() + "를(을) 사용하시겠습니까?")) {
+								checkId = true;
+								$("#btnIdCheck").attr("disabled", true);
+							}
+						} else {
+							checkId = false;
+							alert("이미 존재하는 아이디입니다.");
+							$("#userId").focus();
+							return;
+						}
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+			});
+			
+			$("#userId").on("change", function(){
+				checkId = false;
+				$("#btnIdCheck").attr("disabled", false);
+			});
+		});
+	</script>
 </body>
 </html>

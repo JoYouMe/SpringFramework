@@ -10,7 +10,7 @@ import com.spring.boardweb.UserVO;
 public class UserDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
-	
+	                //클래스, 파라미터
 	public void join(UserVO userVO) {
 		mybatis.insert("UserDAO.join", userVO);
 	}
