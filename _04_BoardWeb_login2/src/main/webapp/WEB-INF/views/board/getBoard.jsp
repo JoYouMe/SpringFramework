@@ -5,19 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="${pageContext.request.contextPath }/header.jsp"></jsp:include>
 	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 		<h3>게시글 상세</h3>
-		<form>
+		<form action="/board/updateBoard.do" method="post">
 			<table border="1" style="border-collapse: collapse;">
 				<tr>
 					<td style="background: orange; width: 70px">
 						제목
 					</td>
 					<td style="text-align: left">
-						<input type="text" name="boardTitle" id="boardTitle" value="제목1">
+						<input type="text" name="boardTitle" id="boardTitle" value="${board.boardTitle }">
 					</td>
 				</tr>
 				<tr>
@@ -25,7 +26,7 @@
 						작성자
 					</td>
 					<td style="text-align: left">
-						<input type="text" name="boardWriter" id="boardWriter" value="작성자1">
+						<input type="text" name="boardWrite" id="boardWrite" value="${board.boardWrite }" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -33,7 +34,7 @@
 						내용
 					</td>
 					<td style="text-align: left">
-						<textarea name="boardContent" id="boardContent" cols="40" rows="10">내용1</textarea>
+						<textarea name="boardContent" id="boardContent" cols="40" rows="10">${board.boardContent }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -41,7 +42,7 @@
 						작성일
 					</td>
 					<td style="text-align: left">
-						2022.07.13
+						${board.boardRegdate }
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +50,7 @@
 						조회수
 					</td>
 					<td style="text-align: left">
-						1
+						${board.boardCnt }
 					</td>
 				</tr>
 				<tr id="btnWrap">
@@ -61,9 +62,23 @@
 		</form>
 		<hr/>
 		<a href="/board/insertBoard.do">글 등록</a>
-		<a href="#">글 삭제</a>
+		<a id="btnDelete" href="/board/deleteBoard.do">글 삭제</a>
 		<a href="/board/getBoardList.do">글 목록</a>
 	</div>
 	<jsp:include page="${pageContext.request.contextPath }/footer.jsp"></jsp:include>
+	
+	<script>
+		$(function() {
+			const loginUserId = '${loginUser.userId}';
+			const boardWrite = '${board.boardWrite}';
+			
+			if(loginUserId !== boardWrite) {
+				$("#btnWrap").hide();
+				$("#btnDelete").hide();
+				$("#boardTitle").attr("readonly", true);
+				$("#boardContent").attr("readonly", true);
+			}
+		});
+	</script>
 </body>
 </html>

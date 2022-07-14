@@ -66,7 +66,7 @@
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="/user/mypage.do">마이페이지</a>
+							<a href="/user/mypage.do">${loginUser.userId }</a>
 						</li>
 						<li>
 							<a href="/user/logout.do">로그아웃</a>

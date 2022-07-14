@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 				<th style="backgrond: orange; width: 150px;">등록일</th>
 				<th style="backgrond: orange; width: 100px;">조회수</th> 
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>1</td>
 				<td>
 					<a href="/board/getBoard.do?boardSeq=1">제목1</a>
@@ -26,7 +27,18 @@
 				<td>작성자1</td>
 				<td>2022.07.13</td>
 				<td>1</td>
-			</tr>
+			</tr> -->
+			<c:forEach var="board" items="${boardList }">
+				<tr>
+					<td>${board.boardSeq }</td>
+					<td>
+						<a href="/board/getBoard.do?boardSeq=${board.boardSeq }">${board.boardTitle }</a>
+					</td>
+					<td>${board.boardWrite }</td>
+					<td>${board.boardRegdate }</td>
+					<td>${board.boardCnt }</td>
+				</tr>
+			</c:forEach>
 		</table>
 		<br/>
 		<a href="/board/insertBoard.do">새 글 등록</a>

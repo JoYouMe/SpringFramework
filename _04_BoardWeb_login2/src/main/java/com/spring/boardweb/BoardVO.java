@@ -5,11 +5,24 @@ import java.sql.Date;
 public class BoardVO {
 	private int boardSeq;
 	private String boardTitle;
-	private String boardWriter;
+	private String boardWrite;
 	private String boardContent;
 	private Date boardRegdate;
 	private Date boardMdfdate;
+	private int boardCnt;
 	
+	public int getBoardCnt() {
+		return boardCnt;
+	}
+	public void setBoardCnt(int boardCnt) {
+		this.boardCnt = boardCnt;
+	}
+	@Override
+	public String toString() {
+		return "BoardVO [boardSeq=" + boardSeq + ", boardTitle=" + boardTitle + ", boardWriter=" + boardWrite
+				+ ", boardContent=" + boardContent + ", boardRegdate=" + boardRegdate + ", boardMdfdate=" + boardMdfdate
+				+ ", boardCnt=" + boardCnt + "]";
+	}
 	public int getBoardSeq() {
 		return boardSeq;
 	}
@@ -22,11 +35,11 @@ public class BoardVO {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
-	public String getBoardWriter() {
-		return boardWriter;
+	public String getBoardWrite() {
+		return boardWrite;
 	}
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
+	public void setBoardWriter(String boardWrite) {
+		this.boardWrite = boardWrite;
 	}
 	public String getBoardContent() {
 		return boardContent;

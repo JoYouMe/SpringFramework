@@ -102,6 +102,19 @@ public class UserController {
 		System.out.println("jsonString===============================" + json);
 		
 		return json;
-		
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		//세션내에 저장되어 있는 내용들을 초기화
+		session.invalidate();
+		return "redirect:/index.jsp"; //WEB_INF 밖에 있기 때문에 redirect 사용
+	}
+	
+	
+	
+	
+	
+	
+	
 }
