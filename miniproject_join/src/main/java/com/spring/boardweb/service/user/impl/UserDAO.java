@@ -19,4 +19,5 @@ public class UserDAO {
 		return mybatis.selectOne("UserDAO.idCheck", userId);
 	}
 
+
 }

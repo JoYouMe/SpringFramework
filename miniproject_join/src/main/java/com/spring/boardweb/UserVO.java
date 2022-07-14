@@ -6,7 +6,14 @@ public class UserVO {
 	private String userNm;
 	private String userMail;
 	private String userTel;
+	private int animal; 
 	
+	public int getAnimal() {
+		return animal;
+	}
+	public void setAnimal(int animal) {
+		this.animal = animal;
+	}
 	public String getUserId() {
 		return userId;
 	}

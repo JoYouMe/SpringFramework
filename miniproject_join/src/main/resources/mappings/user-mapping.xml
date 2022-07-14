@@ -12,18 +12,20 @@
 	<!-- 쿼리 작성 영역 -->
 	<insert id="join" parameterType="user">
 	<![CDATA[
-		INSERT INTO T_USER (
+		INSERT INTO TO_USER (
 			USER_ID,
 			USER_PW,
 			USER_NM,
 			USER_MAIL,
-			USER_TEL
+			USER_TEL,
+			USER_ANI
 		) VALUES (
 			#{userId},
 			#{userPw},
 			#{userNm},
 			#{userMail},
-			#{userTel}
+			#{userTel},
+			#{animal}
 		)
 	]]>
 	</insert>
@@ -31,7 +33,7 @@
 	<select id="idCheck" parameterType="string" resultType="int">
 	<![CDATA[
 		SELECT COUNT(*)
-			FROM T_USER
+			FROM TO_USER
 			WHERE USER_ID = #{userId}
 	]]>
 	</select>
