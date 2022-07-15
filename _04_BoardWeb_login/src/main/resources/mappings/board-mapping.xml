@@ -37,7 +37,24 @@
 	<![CDATA[
 		SELECT *
 			FROM T_BOARD
+			WHERE 1=1
 	]]>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 'all'">
+					AND BOARD_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+					 OR BOARD_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+					 OR BOARD_WRITER LIKE CONCAT('%', #{searchKeyword}, '%')
+				</if>
+				<if test="searchCondition == 'title'">
+					AND BOARD_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+				</if>
+				<if test="searchCondition == 'content'">
+					AND BOARD_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+				</if>
+				<if test="searchCondition == 'writer'">
+					AND BOARD_WRITER LIKE CONCAT('%', #{searchKeyword}, '%')
+				</if>
+			</if>
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultType="board">
@@ -51,14 +68,7 @@
 	<update id="updateBoardCnt" parameterType="int">
 	<![CDATA[
 		UPDATE T_BOARD
-			SET BOARD_CNT = (
-								SELECT B.CNT
-									FROM (
-											SELECT A.BOARD_CNT + 1 AS CNT
-												FROM T_BOARD A
-												WHERE BOARD_SEQ = #{boardSeq}
-										 ) B
-							 )
+			SET BOARD_CNT = BOARD_CNT + 1
 			WHERE BOARD_SEQ = #{boardSeq}
 	]]>
 	</update>
@@ -70,6 +80,16 @@
 	]]>
 	</delete>
 	
+	<!-- 삭제된 seq부터 하나씩 땡기기 -->
+	<update id="updateBoardSeq" parameterType="int">
+	<![CDATA[
+		UPDATE T_BOARD
+			SET BOARD_SEQ = BOARD_SEQ - 1
+			WHERE BOARD_SEQ > #{boardSeq}
+	]]>
+	</update>
+	
+	
 	<update id="updateBoard" parameterType="board">
 	<![CDATA[
 		UPDATE T_BOARD
@@ -79,6 +99,44 @@
 			WHERE BOARD_SEQ = #{boardSeq}
 	]]>
 	</update>
+	
+	<!--<select id="getBoardListSearch" parameterType="java.util.Map" resultType="board">
+	<![CDATA[
+		SELECT * 
+			FROM T_BOARD
+			WHERE 1=1
+	]]>
+		<if test="searchKeyword != null and searchKeyword != ''">
+			<if test="searchCondition =='all'">
+				AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+				 OR BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+				 OR BOARD_WRITER LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchCondition == 'title'">
+				AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchCondition == 'content'">
+				AND BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchCondition == 'writer'">
+				AND BOARD_WRITER LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</if>
+	</select>  -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

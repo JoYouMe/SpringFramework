@@ -38,7 +38,23 @@
 	]]>
 	</select>
 	
-	<select id="pwCheck" parameterType="user">
+	<select id="pwCheck" parameterType="user" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+			FROM TO_USER
+			WHERE USER_ID = #{userId}
+			  AND USER_PW = #{userPw}
+	
+	]]>
 	</select> 
+	
+	<select id="login" parameterType="user" resultType="user">
+	<![CDATA[
+		SELECT * 
+			FROM TO_USER
+			WHERE USER_ID = #{userId}
+			  AND USER_PW = #{userPw}
+	]]>
+	</select>
 	
 </mapper>

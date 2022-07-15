@@ -138,6 +138,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\BitCamp\springFramework\_05_BoardWeb_paging"/>
 			<item value="C:\BitCamp\springFramework\_04_BoardWeb_login"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

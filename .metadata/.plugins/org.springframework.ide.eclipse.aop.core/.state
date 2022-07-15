@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="_05_BoardWeb_paging"/>
 <aop-project name="_02_BoardWeb_structure"/>
 <aop-project name="SampleSpringYse"/>
 <aop-project name="_01_BoardWeb_properties">

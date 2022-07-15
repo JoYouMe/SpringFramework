@@ -1,6 +1,7 @@
 package com.spring.boardweb.service.board.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class BoardDAO {
 		mybatis.insert("BoardDAO.insertBoard", boardVO);
 	}
 	
-	public List<BoardVO> getBoardList() {
-		return mybatis.selectList("BoardDAO.getBoardList");
+	public List<BoardVO> getBoardList(Map<String, String> paramMap) {
+		return mybatis.selectList("BoardDAO.getBoardList", paramMap);
 	}
 	
 	public BoardVO getBoard(int boardSeq) {
@@ -31,9 +32,14 @@ public class BoardDAO {
 	
 	public void deleteBoard(int boardSeq) {
 		mybatis.delete("BoardDAO.deleteBoard",boardSeq);
+		mybatis.update("BoardDAO.updateBoardSeq", boardSeq);
 	}
 	
 	public void updateBoard(BoardVO boardVO) {
-		mybatis.update("BoardDAO.updateBoard",boardVO);
+		mybatis.update("BoardDAO.updateBoard",boardVO); //DAO에서는 mybatis를 이용해서 mappings에 작성한 쿼리 불러옴
 	}
+	
+//	public List<BoardVO> getBoardListSearch(Map<String, String> paramMap) {
+//		return mybatis.selectList("BoardDAO.getBoardListSearch", paramMap);
+//	}
 }
