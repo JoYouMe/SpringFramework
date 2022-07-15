@@ -18,6 +18,13 @@ public class UserDAO {
 	public int idCheck(String userId) {
 		return mybatis.selectOne("UserDAO.idCheck", userId);
 	}
+	
+	public int pwCheck(UserVO userVO) {
+		return mybatis.selectOne("UserDAO.pwCheck", userVO);
+	}
+	
+	public UserVO login(UserVO userVO) {
+		return (UserVO)mybatis.selectOne("UserDAO.login", userVO);
 
-
+	}
 }

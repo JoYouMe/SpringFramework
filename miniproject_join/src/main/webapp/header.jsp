@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,37 +55,29 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navLinks">
                     <ul class="navbar-nav ms-auto navbar-center">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">지 도</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/user/join.do" class="nav-link">회원가입</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/user/login.do" class="nav-link">로그인</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Q&A</a>
-                        </li>
+						<c:choose>
+							<c:when test="${loginUser eq null }">
+								<li class="nav-item">
+									<a href="/user/login.do" class="nav-link" >로그인</a>
+								</li>
+								<li class="nav-item">
+									<a href="/user/join.do" class="nav-link" >회원가입</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="nav-item">
+									<a href="/user/mypage.do" class="nav-link">${loginUser.userId }</a>
+								</li>
+								<li class="nav-item">
+									<a href="/user/logout.do" class="nav-link">로그아웃</a>
+								</li>
+							</c:otherwise>
+						</c:choose>  
                     </ul>
                 </div>
             </nav>
-
-            <!-- search bar -->
-            <!--  <div class="search-box fixed-top">
-                <div class="search-container">
-                    <div class="search-input">
-                        <a href="search.html">
-                            <input type="text" placeholder="어떤 서비스가 필요하세요?" disabled>
-                            <button type="submit" class="search-button">
-                                <img class="search-img" src="${pageContext.request.contextPath }/images/search.png" alt="search">
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
         </header>
-	
+
 	
 	
 	

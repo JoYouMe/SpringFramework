@@ -38,4 +38,7 @@
 	]]>
 	</select>
 	
+	<select id="pwCheck" parameterType="user">
+	</select> 
+	
 </mapper>

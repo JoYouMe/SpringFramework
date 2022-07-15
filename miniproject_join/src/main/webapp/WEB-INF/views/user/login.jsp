@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOGAETHER</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
     <script src="${pageContext.request.contextPath }/js/bootstrap.bundle.min.js"></script>
@@ -28,10 +29,10 @@
         <br>
         <h2>로그인</h2>
 
-        <form action="logined_index.html">
-            <input type="text" name="id" class="text-field" placeholder="ID" required>
-            <input type="password" name="pw" class="text-field" placeholder="PW" required>
-            <input type="submit" value="로그인" class="submit-btn">
+        <form id="loginForm">
+            <input type="text" id="userId" name="userId" class="text-field" placeholder="ID" required>
+            <input type="password" id="userPw" name="userPw" class="text-field" placeholder="PW" required>
+            <input type="button" id="btnLogin" name="btnLogin" value="로그인" class="submit-btn">
         </form>
 
         <div class="links">
@@ -63,5 +64,38 @@
                 alt="구글">
         </div>
     </div>
+    <jsp:include page="${pageContext.request.contextPath }/footer.jsp"></jsp:include>
+	<script>
+		//로그인 시 아이디나 비밀번호가 틀렸을 경우를
+		//대비하여 폼을 서브밋 하지 않고
+		//후 처리를 위해 ajax로 처리
+		$(function() {
+			$("#btnLogin").on("click", function() {
+				$.ajax({
+					url: '/user/login.do',
+					type: 'post',
+					data: $("#loginForm").serialize(),
+					success: function(obj) {
+						const data = JSON.parse(obj);
+						//1. 아이디 체크
+						if(data.message == 'idFail') {
+							alert("존재하지 않는 아이디입니다.");
+							return;
+						} else if(data.message == 'pwFail') {
+							//2. 비밀번호 체크
+							alert("비밀번호가 틀렸습니다.");
+							return;
+						}
+						
+						//3. 로그인 처리
+						location.href = "/index.jsp";
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>

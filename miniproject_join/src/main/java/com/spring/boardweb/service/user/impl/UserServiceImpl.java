@@ -20,5 +20,14 @@ public class UserServiceImpl implements UserService{
 	public int idCheck(String userId) {
 		return userDAO.idCheck(userId);
 	}
+
+	@Override
+	public int pwCheck(UserVO userVO) {
+		return userDAO.pwCheck(userVO);
+	}
 	
+	@Override
+	public UserVO login(UserVO userVO) {
+		return userDAO.login(userVO);
+	}
 }
