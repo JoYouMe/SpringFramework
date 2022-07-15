@@ -9,17 +9,14 @@ public interface BoardService {
 	void insertBoard(BoardVO boardVO);
 	
 	List<BoardVO> getBoardList(Map<String, String> paramMap);
-//	List<BoardVO> getBoardListSearch(Map<String, String> paramMap);
 	
 	BoardVO getBoard(int boardSeq);
 	
 	void updateBoardCnt(int boardSeq);
 	
-	void deleteBoard(int boardSeq);
-	
 	void updateBoard(BoardVO boardVO);
 	
+	void deleteBoard(int boardSeq);
 	
-	
-
+	/* List<BoardVO> getBoardListSearch(Map<String, String> paramMap); */
 }

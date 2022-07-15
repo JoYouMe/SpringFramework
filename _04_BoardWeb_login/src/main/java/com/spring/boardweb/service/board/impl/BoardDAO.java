@@ -30,16 +30,17 @@ public class BoardDAO {
 		mybatis.update("BoardDAO.updateBoardCnt", boardSeq);
 	}
 	
+	public void updateBoard(BoardVO boardVO) {
+		mybatis.update("BoardDAO.updateBoard", boardVO);
+	}
+	
 	public void deleteBoard(int boardSeq) {
-		mybatis.delete("BoardDAO.deleteBoard",boardSeq);
+		mybatis.delete("BoardDAO.deleteBoard", boardSeq);
 		mybatis.update("BoardDAO.updateBoardSeq", boardSeq);
 	}
 	
-	public void updateBoard(BoardVO boardVO) {
-		mybatis.update("BoardDAO.updateBoard",boardVO); //DAO에서는 mybatis를 이용해서 mappings에 작성한 쿼리 불러옴
-	}
-	
-//	public List<BoardVO> getBoardListSearch(Map<String, String> paramMap) {
-//		return mybatis.selectList("BoardDAO.getBoardListSearch", paramMap);
-//	}
+	/*
+	 * public List<BoardVO> getBoardListSearch(Map<String, String> paramMap) {
+	 * return mybatis.selectList("BoardDAO.getBoardListSearch", paramMap); }
+	 */
 }

@@ -24,30 +24,28 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getBoardList(paramMap);
 	}
 	
-	@Override 
-	public BoardVO getBoard(int boardSeq) {  //BoardVO boardVO도 가능
+	@Override
+	public BoardVO getBoard(int boardSeq) {
 		return boardDAO.getBoard(boardSeq);
 	}
 	
 	@Override
-	public void updateBoardCnt(int boardSeq) { //BoardVO boardVO도 가능
+	public void updateBoardCnt(int boardSeq) {
 		boardDAO.updateBoardCnt(boardSeq);
 	}
-
-	@Override
-	public void deleteBoard(int boardSeq) { //BoardVO boardVO도 가능
-		boardDAO.deleteBoard(boardSeq);
-		
-	}
-
+	
 	@Override
 	public void updateBoard(BoardVO boardVO) {
-		boardDAO.updateBoard(boardVO);  //쿼리문 실행하기위해 DAO에 메소드를 만들고 가져옴
+		boardDAO.updateBoard(boardVO);
 	}
-
-//	@Override
-//	public List<BoardVO> getBoardListSearch(Map<String, String> paramMap) {
-//		return boardDAO.getBoardListSearch(paramMap); //파라미터로 key값인 paramMap가져옴
-//	}
-//	
+	
+	@Override
+	public void deleteBoard(int boardSeq) {
+		boardDAO.deleteBoard(boardSeq);
+	}
+	
+	/*
+	 * @Override public List<BoardVO> getBoardListSearch(Map<String, String>
+	 * paramMap) { return boardDAO.getBoardListSearch(paramMap); }
+	 */
 }

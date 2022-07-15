@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOGAETHER</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
     <script src="${pageContext.request.contextPath }/js/bootstrap.bundle.min.js"></script>

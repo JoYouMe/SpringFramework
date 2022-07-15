@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-	.pagination{
+	.pagination {
 		list-style: none;
 		width: 100%;
 		display: inline-block;
@@ -17,30 +18,30 @@
 		float: left;
 		margin-left: 5px;
 	}
-	
-	
 </style>
 </head>
 <body>
 	<jsp:include page="${pageContext.request.contextPath }/header.jsp"></jsp:include>
 	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 		<h3>게시글 목록</h3>
-		<form action="/board/getBoardList.do" method="post">
+		<form id="searchForm" action="/board/getBoardList.do" method="post">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 			<table border="1" style="width: 700px; border-collapse: collapse;">
 				<tr>
 					<td align="right">
 						<select name="searchCondition">
 							<option value="all"
-							<c:if test="${boardSearch.searchCondition eq 'all' }">selected="selected"</c:if>
+							<c:if test="${searchCondition eq 'all' }">selected="selected"</c:if>
 							>전체</option>
 							<option value="title"
-							<c:if test="${boardSearch.searchCondition eq 'title' }">selected="selected"</c:if>
+							<c:if test="${searchCondition eq 'title' }">selected="selected"</c:if>
 							>제목</option>
 							<option value="content"
-							<c:if test="${boardSearch.searchCondition eq 'content' }">selected="selected"</c:if>
+							<c:if test="${searchCondition eq 'content' }">selected="selected"</c:if>
 							>내용</option>
 							<option value="writer"
-							<c:if test="${boardSearch.searchCondition eq 'writer' }">selected="selected"</c:if>
+							<c:if test="${searchCondition eq 'writer' }">selected="selected"</c:if>
 							>작성자</option>
 						</select>
 						<input type="text" name="searchKeyword">
@@ -82,26 +83,41 @@
 		<br/>
 		<div style="text-align: center;">
 			<ul class="pagination">
-				<li class="pagination_button">
-					<a href="#">Previous</a>
-				</li>
-				<li class="pagination_button">
-					<a href="#">1</a>
-				</li>
-				<li class="pagination_button">
-					<a href="#">2</a>
-				</li>
-				<li class="pagination_button">
-					<a href="#">3</a>
-				</li>
-				<li class="pagination_button">
-					<a href="#">Next</a>
-				</li>
+				<c:if test="${pageMaker.prev }">
+					<li class="pagination_button">
+						<a href="${pageMaker.startPage - 1 }">Previous</a>
+					</li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+					<li class="pagination_button">
+						<a href="${num }">${num }</a>
+					</li>
+				</c:forEach>
+				
+				<c:if test="${pageMaker.next }">
+					<li class="pagination_button">
+						<a href="${pageMaker.endPage + 1 }">Next</a>
+					</li>
+				</c:if>
 			</ul>
 		</div>
 		<br/>
 		<a href="/board/insertBoard.do">새 글 등록</a>
 	</div>
 	<jsp:include page="${pageContext.request.contextPath }/footer.jsp"></jsp:include>
+	
+	<script>
+		$(function() {
+			const searchForm = $("#searchForm");
+			
+			$(".pagination a").on("click", function(e) {
+				e.preventDefault();
+				
+				$("input[name='pageNum']").val($(this).attr("href"));
+				searchForm.submit();
+			});
+		});
+	</script>
 </body>
 </html>

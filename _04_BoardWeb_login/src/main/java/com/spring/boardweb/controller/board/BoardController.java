@@ -22,7 +22,7 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(HttpSession session, Model model,@RequestParam Map<String, String> paramMap) {
+	public String getBoardList(HttpSession session, Model model, @RequestParam Map<String, String> paramMap) {
 		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
@@ -79,37 +79,31 @@ public class BoardController {
 		return "redirect:getBoardList.do";
 	}
 	
-	//수정
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(HttpSession session, BoardVO boardVO) {
-		
-		boardService.updateBoard(boardVO); //boardService에 updateBoard라는 메소드를 만들고 호출할 예정
+	public String updateBoard(BoardVO boardVO) {
+		boardService.updateBoard(boardVO);
 		
 		return "redirect:getBoardList.do";
 	}
-		
-	//삭제
-	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(@RequestParam int boardSeq) { //boardSeq만 가져오면되니까, @RequestParam을 통해서 int로 boardSeq를 받아옴
-
-		boardService.deleteBoard(boardSeq); //boardService에 deleteBoard라는 메소드를 만들고 호출할 예정
-		
-		//게시글 목록 데이터를 조회한 후에 화면으로 이동시키기 위해 요청을 보냄
-		return "redirect:getBoardList.do";	//"board/getBoardList.do를 하면 바로 화면으로 이동하여 게시글 목록 데이터를 조회하지 못함
 	
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard(@RequestParam int boardSeq) {
+		boardService.deleteBoard(boardSeq);
+		
+		//바로 화면으로 이동하면 게시글 목록 데이터를 조회하지 못함
+		//return "board/getBoardList";
+		//게시글 목록 데이터를 조회한 후에 화면으로 이동시키기 위해서
+		//getBoardList.do라는 요청을 보냄
+		return "redirect:getBoardList.do";
 	}
 	
-//	@RequestMapping("/getBoardListSearch.do")                     	 //key value 값
-//	public String getBoardListSearch(@RequestParam Map<String, String> paramMap,  Model model) {
-//		List<BoardVO> searchBoardList = boardService.getBoardListSearch(paramMap);
-//		
-//		model.addAttribute("boardList",searchBoardList);
-//		
-//		return "board/getBoardList";
-//	}
-	
-	
-	
-	
-	
+	/*
+	 * @RequestMapping("/getBoardListSearch.do") public String
+	 * getBoardListSearch(@RequestParam Map<String, String> paramMap, Model model) {
+	 * List<BoardVO> searchBoardList = boardService.getBoardListSearch(paramMap);
+	 * 
+	 * model.addAttribute("boardList", searchBoardList);
+	 * 
+	 * return "board/getBoardList"; }
+	 */
 }

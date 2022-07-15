@@ -123,7 +123,7 @@
 			</if>
 	</select> -->
 	
-	<select id="getBoardCnt" parameterType="java.until.Map" resultType="int">
+	<select id="getBoardCnt" parameterType="java.util.Map" resultType="int">
 	<![CDATA[
 		SELECT COUNT(*)
 			FROM T_BOARD
