@@ -20,4 +20,9 @@ public class BoardController {
 	public String insertBoard() {
 		return "board/insertBoard";
 	}
+	
+	@RequestMapping("/insertComp.do")
+	public String insertComp() {
+		return "board/insertBoard";
+	}
 }

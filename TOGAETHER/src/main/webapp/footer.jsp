@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer style="display: flex; justify-content: center; align-items: center; background: orange; font-size:0.5rem; color: white;" >
+	<footer>
+            <hr>
             <p class="contact">1599-5319</p>
             <p>평일 10:00 - 18:00</p>
-            <br/>
             <p class="info">상호명: 투개더 | 대표: 김예지, 조유미, 성문식, 이기쁨, 박준현</p>
             <p class="info">주소: 서울특별시 강남구 테헤란로 415 | 이메일: togaether@bit.camp</p>
      </footer>

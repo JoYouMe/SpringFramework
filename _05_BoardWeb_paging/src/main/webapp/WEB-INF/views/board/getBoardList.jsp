@@ -44,8 +44,8 @@
 							<c:if test="${searchCondition eq 'writer' }">selected="selected"</c:if>
 							>작성자</option>
 						</select>
-						<input type="text" name="searchKeyword">
-						<button type="submit">검색</button>
+						<input type="text" name="searchKeyword" value="${searchKeyword }">
+						<button type="button" id="btnSearch">검색</button>
 					</td>
 				</tr>
 			</table>
@@ -117,6 +117,12 @@
 				$("input[name='pageNum']").val($(this).attr("href"));
 				searchForm.submit();
 			});
+			
+			$("#btnSearch").on("click", function(){
+				$("input[name='pageNum']").val("1");
+				searchForm.submit();
+			})
+			
 		});
 	</script>
 </body>

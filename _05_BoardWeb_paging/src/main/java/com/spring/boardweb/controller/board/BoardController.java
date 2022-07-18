@@ -47,8 +47,12 @@ public class BoardController {
 			model.addAttribute("searchCondition", paramMap.get("searchCondition"));
 		}
 		
+		if(paramMap.get("searchKeyword") != null && !paramMap.get("searchKeyword").equals("")){
+				model.addAttribute("searchKeyword", paramMap.get("searchKeyword"));
+		}
+	
 		return "board/getBoardList";
-	}
+		}
 	
 	@RequestMapping("/getBoard.do")
 	public String getBoard(HttpSession session, @RequestParam int boardSeq, Model model) {
