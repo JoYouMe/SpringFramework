@@ -20,12 +20,6 @@
     <!--버튼에 회원가입 onclick 넣기, 색깔 없에고 글자 주황, 체크 인풋박스, 체크코드 -->
 </head>
 <body>
-
-    <script>
-        var chk = document.querySelector("input[name=test1]").checked;
-        console.log(chk);
-    </script>
-
     <div class="signup-form">
    
         <div class="container">

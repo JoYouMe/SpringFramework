@@ -41,7 +41,7 @@
             </div>
             <div>
                 <p>아직회원이 아닌가요?
-                    <a href="signup.html">회원가입</a>
+                    <a href="/user/join.do">회원가입</a>
                 </p>
             </div>
         </div>

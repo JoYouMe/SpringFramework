@@ -23,6 +23,8 @@ public class BoardController {
 	
 	@RequestMapping("/insertComp.do")
 	public String insertComp() {
-		return "board/insertBoard";
+		return "board/insertComp";
 	}
+	
+	
 }

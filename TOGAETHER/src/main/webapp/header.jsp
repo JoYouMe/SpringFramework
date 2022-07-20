@@ -47,7 +47,7 @@
 	                 	</c:when>
 	                 	<c:otherwise>
 	                 		<li class="nav-item">
-                            	<a href="/insertComp.do" class="nav-link">등 록</a>
+                            	<a href="/board/insertComp.do" class="nav-link">등 록</a>
                         	</li>
 	                 		<li class="nav-item">
                             	<a href="#" class="nav-link">여 행</a>
@@ -61,7 +61,7 @@
                         	<li class="nav-item dropdown">
                             	<a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">더보기</a>
 	                            <div class="dropdown-menu">
-	                                <a href="map.html" class="dropdown-item">지도</a>
+	                                <a href="#" class="dropdown-item">지도</a>
 	                                <a href="/user/mypage.do" class="dropdown-item">${loginUser.userId }</a>
 	                                <a href="qna.html" class="dropdown-item">Q&A</a>
 	                                <a href="/user/logout.do" class="dropdown-item" onclick="alert('로그아웃되었습니다.')">로그아웃</a>
